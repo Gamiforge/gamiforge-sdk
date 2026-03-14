@@ -1,0 +1,108 @@
+/* =========================================================================
+   Leaderboard Component
+   ========================================================================= */
+
+.gf-leaderboard {
+  font-family: var(--gf-font-family);
+  background: var(--gf-color-background);
+  border: 1px solid var(--gf-color-border);
+  border-radius: var(--gf-border-radius);
+  overflow: hidden;
+}
+
+.gf-leaderboard__title {
+  font-size: var(--gf-font-size-lg);
+  font-weight: 600;
+  color: var(--gf-color-text);
+  padding: var(--gf-spacing-md);
+  border-bottom: 1px solid var(--gf-color-border);
+}
+
+.gf-leaderboard__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gf-leaderboard__th {
+  text-align: left;
+  font-size: var(--gf-font-size-sm);
+  font-weight: 600;
+  color: var(--gf-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--gf-spacing-sm) var(--gf-spacing-md);
+  background: var(--gf-color-surface);
+  border-bottom: 1px solid var(--gf-color-border);
+}
+
+.gf-leaderboard__th--rank {
+  width: 48px;
+  text-align: center;
+}
+
+.gf-leaderboard__th--value {
+  text-align: right;
+}
+
+.gf-leaderboard__td {
+  padding: var(--gf-spacing-sm) var(--gf-spacing-md);
+  font-size: var(--gf-font-size-base);
+  color: var(--gf-color-text);
+  border-bottom: 1px solid var(--gf-color-border);
+}
+
+.gf-leaderboard__td--rank {
+  text-align: center;
+  font-weight: 600;
+  color: var(--gf-color-text-secondary);
+}
+
+.gf-leaderboard__td--value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--gf-color-primary);
+}
+
+.gf-leaderboard__row:last-child .gf-leaderboard__td {
+  border-bottom: none;
+}
+
+.gf-leaderboard__row--highlighted {
+  background: rgba(108, 92, 231, 0.06);
+}
+
+.gf-leaderboard__row--highlighted .gf-leaderboard__td--user {
+  font-weight: 600;
+  color: var(--gf-color-primary);
+}
+
+.gf-leaderboard__medal {
+  font-size: var(--gf-font-size-lg);
+}
+
+/* Skeleton loading */
+.gf-leaderboard__skeleton {
+  padding: var(--gf-spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gf-spacing-sm);
+}
+
+.gf-leaderboard__skeleton-row {
+  height: 36px;
+  background: var(--gf-color-surface);
+  border-radius: 4px;
+  animation: gf-leaderboard-pulse 1.5s ease-in-out infinite;
+}
+
+.gf-leaderboard__error {
+  padding: var(--gf-spacing-lg);
+  text-align: center;
+  color: var(--gf-color-danger);
+  font-size: var(--gf-font-size-base);
+}
+
+@keyframes gf-leaderboard-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}

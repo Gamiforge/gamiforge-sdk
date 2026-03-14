@@ -1,0 +1,64 @@
+/* =========================================================================
+   XPGainIndicator Component
+   ========================================================================= */
+
+.gf-xp-gain {
+  position: fixed;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gf-spacing-xs);
+  pointer-events: none;
+  font-family: var(--gf-font-family);
+}
+
+.gf-xp-gain--top-right {
+  top: var(--gf-spacing-lg);
+  right: var(--gf-spacing-lg);
+}
+
+.gf-xp-gain--top-left {
+  top: var(--gf-spacing-lg);
+  left: var(--gf-spacing-lg);
+}
+
+.gf-xp-gain--bottom-right {
+  bottom: var(--gf-spacing-lg);
+  right: var(--gf-spacing-lg);
+}
+
+.gf-xp-gain--bottom-left {
+  bottom: var(--gf-spacing-lg);
+  left: var(--gf-spacing-lg);
+}
+
+.gf-xp-gain--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+.gf-xp-gain__item {
+  font-size: var(--gf-font-size-lg);
+  font-weight: 700;
+  color: var(--gf-color-success);
+  background: var(--gf-color-background);
+  padding: var(--gf-spacing-xs) var(--gf-spacing-md);
+  border-radius: 999px;
+  box-shadow: var(--gf-shadow);
+  border: 1px solid var(--gf-color-border);
+  animation: gf-xp-float var(--gf-animation-duration) ease-out;
+  white-space: nowrap;
+}
+
+@keyframes gf-xp-float {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

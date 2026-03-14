@@ -1,0 +1,310 @@
+/* =========================================================================
+   AwardToast Component — Unified toast for all award types
+   ========================================================================= */
+
+.gf-award-toast {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  font-family: var(--gf-font-family);
+}
+
+.gf-award-toast--top-right {
+  top: var(--gf-spacing-lg);
+  right: var(--gf-spacing-lg);
+  align-items: flex-end;
+}
+
+.gf-award-toast--top-left {
+  top: var(--gf-spacing-lg);
+  left: var(--gf-spacing-lg);
+  align-items: flex-start;
+}
+
+.gf-award-toast--bottom-right {
+  bottom: var(--gf-spacing-lg);
+  right: var(--gf-spacing-lg);
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}
+
+.gf-award-toast--bottom-left {
+  bottom: var(--gf-spacing-lg);
+  left: var(--gf-spacing-lg);
+  align-items: flex-start;
+  flex-direction: column-reverse;
+}
+
+/* ---------------------------------------------------------------------------
+   Base Item
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--gf-spacing-sm);
+  padding: var(--gf-spacing-sm) var(--gf-spacing-md);
+  background: var(--gf-color-background);
+  border: 1px solid var(--gf-color-border);
+  border-left: 4px solid var(--gf-color-border);
+  border-radius: var(--gf-border-radius);
+  box-shadow: var(--gf-shadow-lg);
+  pointer-events: auto;
+  min-width: 240px;
+  max-width: 380px;
+  overflow: hidden;
+  transition:
+    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 300ms ease;
+  animation: gf-award-slide-in var(--gf-animation-duration) ease-out both;
+}
+
+/* ---------------------------------------------------------------------------
+   Type-specific accent colors
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__item--xp {
+  border-left-color: var(--gf-color-success);
+}
+
+.gf-award-toast__item--xp .gf-award-toast__icon {
+  background: var(--gf-color-success);
+}
+
+.gf-award-toast__item--streak-increment {
+  border-left-color: #f39c12;
+}
+
+.gf-award-toast__item--streak-increment .gf-award-toast__icon {
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+}
+
+.gf-award-toast__item--achievement {
+  border-left-color: var(--gf-color-warning);
+}
+
+.gf-award-toast__item--achievement .gf-award-toast__icon {
+  background: var(--gf-color-warning);
+}
+
+.gf-award-toast__item--level-up {
+  border-left-color: var(--gf-color-primary);
+}
+
+.gf-award-toast__item--level-up .gf-award-toast__icon {
+  background: linear-gradient(135deg, var(--gf-color-primary), var(--gf-color-primary-light));
+}
+
+/* ---------------------------------------------------------------------------
+   Importance Tiers (override type styles)
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__item--important {
+  border-left-color: #e17055;
+  background: linear-gradient(135deg, var(--gf-color-background) 0%, #fff5f0 100%);
+  box-shadow:
+    var(--gf-shadow-lg),
+    0 0 20px rgba(225, 112, 85, 0.2);
+}
+
+.gf-award-toast__item--important .gf-award-toast__icon {
+  background: linear-gradient(135deg, #e17055, #fdcb6e);
+  animation: gf-award-icon-pulse 1.5s ease-in-out 1;
+}
+
+.gf-award-toast__item--important .gf-award-toast__title {
+  color: #e17055;
+}
+
+.gf-award-toast__item--legendary {
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(180deg, #FFD700, #FF6B6B, #C56CF0, #70A1FF) 1;
+  background: linear-gradient(135deg, var(--gf-color-background) 0%, #fffbeb 50%, #fef3f3 100%);
+  box-shadow:
+    var(--gf-shadow-lg),
+    0 0 30px rgba(255, 215, 0, 0.25),
+    0 0 60px rgba(197, 108, 240, 0.1);
+  animation:
+    gf-award-slide-in var(--gf-animation-duration) ease-out both,
+    gf-award-legendary-entrance 0.6s ease-out both;
+}
+
+.gf-award-toast__item--legendary .gf-award-toast__icon {
+  background: linear-gradient(135deg, #FFD700, #FF6B6B, #C56CF0);
+  animation: gf-award-icon-spin 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
+
+.gf-award-toast__item--legendary .gf-award-toast__title {
+  background: linear-gradient(90deg, #FFD700, #FF6B6B, #C56CF0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Shimmer overlay for legendary */
+.gf-award-toast__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.5) 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: gf-award-shimmer 1.2s ease-in-out 1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   Icon
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gf-color-border);
+  color: #fff;
+  border-radius: 50%;
+  transition: transform 300ms ease;
+}
+
+/* Custom achievement images */
+.gf-award-toast__custom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Remove background when using a custom image so the image shows cleanly */
+.gf-award-toast__icon:has(img) {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Content
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gf-award-toast__title {
+  font-size: var(--gf-font-size-sm);
+  font-weight: 600;
+  color: var(--gf-color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.gf-award-toast__detail {
+  font-size: var(--gf-font-size-base);
+  color: var(--gf-color-text);
+  margin-top: 1px;
+  line-height: 1.3;
+}
+
+/* Type-specific detail styling */
+.gf-award-toast__item--xp .gf-award-toast__detail {
+  color: var(--gf-color-success);
+  font-weight: 700;
+}
+
+.gf-award-toast__item--level-up .gf-award-toast__detail {
+  font-weight: 700;
+  font-size: var(--gf-font-size-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   Close Button
+   --------------------------------------------------------------------------- */
+
+.gf-award-toast__close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: var(--gf-spacing-xs);
+  cursor: pointer;
+  color: var(--gf-color-text-secondary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--gf-transition-duration);
+  position: relative;
+  z-index: 1;
+}
+
+.gf-award-toast__close:hover {
+  background: var(--gf-color-surface);
+}
+
+/* ---------------------------------------------------------------------------
+   Animations
+   --------------------------------------------------------------------------- */
+
+@keyframes gf-award-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.gf-award-toast--top-left .gf-award-toast__item,
+.gf-award-toast--bottom-left .gf-award-toast__item {
+  animation-name: gf-award-slide-in-left;
+}
+
+@keyframes gf-award-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes gf-award-legendary-entrance {
+  0% { filter: brightness(1); }
+  30% { filter: brightness(1.3); }
+  100% { filter: brightness(1); }
+}
+
+@keyframes gf-award-icon-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gf-award-icon-spin {
+  0% { transform: scale(0.5) rotate(-180deg); }
+  60% { transform: scale(1.15) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes gf-award-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

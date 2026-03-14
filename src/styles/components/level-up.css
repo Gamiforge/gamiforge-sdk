@@ -1,0 +1,88 @@
+/* =========================================================================
+   LevelUpModal Component
+   ========================================================================= */
+
+.gf-level-up-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: gf-level-fade-in var(--gf-animation-duration) ease-out;
+  font-family: var(--gf-font-family);
+}
+
+.gf-level-up-modal {
+  background: var(--gf-color-background);
+  border-radius: calc(var(--gf-border-radius) * 2);
+  padding: var(--gf-spacing-lg) calc(var(--gf-spacing-lg) * 2);
+  text-align: center;
+  box-shadow: var(--gf-shadow-lg);
+  min-width: 280px;
+  max-width: 400px;
+  animation: gf-level-scale-in var(--gf-animation-duration) ease-out;
+}
+
+.gf-level-up-modal__icon {
+  color: var(--gf-color-warning);
+  margin-bottom: var(--gf-spacing-sm);
+  animation: gf-level-star-pulse 1s ease-in-out infinite alternate;
+}
+
+.gf-level-up-modal__title {
+  font-size: var(--gf-font-size-xl);
+  font-weight: 700;
+  color: var(--gf-color-text);
+  margin: 0 0 var(--gf-spacing-xs);
+}
+
+.gf-level-up-modal__level {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gf-color-primary), var(--gf-color-primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--gf-spacing-md);
+}
+
+.gf-level-up-modal__button {
+  display: inline-block;
+  background: var(--gf-color-primary);
+  color: #fff;
+  border: none;
+  padding: var(--gf-spacing-sm) var(--gf-spacing-lg);
+  border-radius: var(--gf-border-radius);
+  font-size: var(--gf-font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--gf-transition-duration);
+}
+
+.gf-level-up-modal__button:hover {
+  background: var(--gf-color-primary-light);
+}
+
+@keyframes gf-level-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gf-level-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gf-level-star-pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}

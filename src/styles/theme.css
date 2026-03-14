@@ -1,0 +1,43 @@
+/* =========================================================================
+   Gamiforge SDK — Theme Variables (CSS Custom Properties)
+   =========================================================================
+   Override these on the [data-gamiforge-theme] selector or :root to
+   customize all Gamiforge components globally.
+   ========================================================================= */
+
+:root,
+[data-gamiforge-theme] {
+  /* --- Colors --- */
+  --gf-color-primary: #6C5CE7;
+  --gf-color-primary-light: #A29BFE;
+  --gf-color-success: #00B894;
+  --gf-color-warning: #FDCB6E;
+  --gf-color-danger: #E17055;
+  --gf-color-text: #2D3436;
+  --gf-color-text-secondary: #636E72;
+  --gf-color-background: #FFFFFF;
+  --gf-color-surface: #F5F6FA;
+  --gf-color-border: #DFE6E9;
+
+  /* --- Typography --- */
+  --gf-font-family: inherit;
+  --gf-font-size-sm: 0.75rem;
+  --gf-font-size-base: 0.875rem;
+  --gf-font-size-lg: 1.125rem;
+  --gf-font-size-xl: 1.5rem;
+
+  /* --- Spacing --- */
+  --gf-spacing-xs: 4px;
+  --gf-spacing-sm: 8px;
+  --gf-spacing-md: 16px;
+  --gf-spacing-lg: 24px;
+
+  /* --- Shape --- */
+  --gf-border-radius: 8px;
+  --gf-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+  /* --- Animation --- */
+  --gf-transition-duration: 200ms;
+  --gf-animation-duration: 300ms;
+}

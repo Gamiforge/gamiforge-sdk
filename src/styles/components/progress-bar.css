@@ -1,0 +1,56 @@
+/* =========================================================================
+   ProgressBar Component
+   ========================================================================= */
+
+.gf-progress-bar {
+  font-family: var(--gf-font-family);
+  width: 100%;
+}
+
+.gf-progress-bar__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--gf-spacing-xs);
+}
+
+.gf-progress-bar__level {
+  font-size: var(--gf-font-size-base);
+  font-weight: 600;
+  color: var(--gf-color-text);
+}
+
+.gf-progress-bar__xp {
+  font-size: var(--gf-font-size-sm);
+  color: var(--gf-color-text-secondary);
+}
+
+.gf-progress-bar__track {
+  width: 100%;
+  background-color: var(--gf-color-surface);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gf-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gf-color-primary), var(--gf-color-primary-light));
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.gf-progress-bar__fill--animated {
+  transition: width var(--gf-animation-duration) ease-out;
+}
+
+.gf-progress-bar__percentage {
+  font-size: 0.625rem;
+  color: #fff;
+  padding-right: var(--gf-spacing-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}

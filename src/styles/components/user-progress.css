@@ -1,0 +1,68 @@
+/* =========================================================================
+   UserProgressWidget Component
+   ========================================================================= */
+
+.gf-user-progress {
+  font-family: var(--gf-font-family);
+  background: var(--gf-color-background);
+  border: 1px solid var(--gf-color-border);
+  border-radius: var(--gf-border-radius);
+  padding: var(--gf-spacing-md);
+}
+
+.gf-user-progress--loading {
+  opacity: 0.6;
+}
+
+.gf-user-progress__title {
+  font-size: var(--gf-font-size-lg);
+  font-weight: 600;
+  color: var(--gf-color-text);
+  margin-bottom: var(--gf-spacing-md);
+}
+
+.gf-user-progress__stats {
+  display: flex;
+  gap: var(--gf-spacing-lg);
+  margin-bottom: var(--gf-spacing-md);
+}
+
+.gf-user-progress__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gf-user-progress__stat-value {
+  font-size: var(--gf-font-size-xl);
+  font-weight: 700;
+  color: var(--gf-color-primary);
+}
+
+.gf-user-progress__stat-label {
+  font-size: var(--gf-font-size-sm);
+  color: var(--gf-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gf-user-progress__bar {
+  margin-bottom: var(--gf-spacing-md);
+}
+
+.gf-user-progress__streak {
+  padding-top: var(--gf-spacing-sm);
+  border-top: 1px solid var(--gf-color-border);
+}
+
+.gf-user-progress__skeleton {
+  height: 120px;
+  background: var(--gf-color-surface);
+  border-radius: var(--gf-border-radius);
+  animation: gf-user-progress-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gf-user-progress-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}

@@ -2,8 +2,9 @@
 
 The official SDK for [Gamiforge](https://www.gamiforge.com) — add XP, achievements, streaks, and leaderboards to your application in minutes.
 
-![Logo](https://www.indiescapegames.com/gamiforge-logo.png)
-
+<p align="center">
+  <img src="https://www.indiescapegames.com/gamiforge-logo.png" width="300" alt="Gamiforge Logo">
+</p>
 
 ## Contents
 

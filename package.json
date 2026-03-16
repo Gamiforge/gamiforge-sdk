@@ -87,6 +87,9 @@
     "components"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": [
     "*.css"
   ]

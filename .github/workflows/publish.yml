@@ -1,0 +1,47 @@
+name: Publish to npm
+
+# Triggers:
+#   - Automatically when a version tag is pushed (e.g. git tag v0.2.0 && git push --tags)
+#   - Manually via the "Run workflow" button in the GitHub Actions UI
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Lint · Test · Build · Publish
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write  # enables npm provenance attestation
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish @gamiforge/sdk to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

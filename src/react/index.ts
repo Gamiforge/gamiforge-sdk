@@ -26,6 +26,8 @@ export { ProgressBar } from './components/ProgressBar.js';
 export type { ProgressBarProps } from './components/ProgressBar.js';
 export { AchievementToast } from './components/AchievementToast.js';
 export type { AchievementToastProps } from './components/AchievementToast.js';
+export { AchievementModal } from './components/AchievementModal.js';
+export type { AchievementModalProps, AchievementModalConfig } from './components/AchievementModal.js';
 export { ConfettiBurst } from './components/Confetti.js';
 export type { ConfettiBurstProps } from './components/Confetti.js';
 export { XPGainIndicator } from './components/XPGainIndicator.js';

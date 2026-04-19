@@ -6,6 +6,11 @@ Add XP, achievements, streaks, leaderboards, and reward UI to your app in minute
 
 Built-in React components help you ship polished reward UI fast, and built-in guardrails help you avoid unhealthy engagement mechanics.
 
+Examples:
+- `examples/nextjs` - SaaS onboarding and activation example
+- `examples/react-basic` - lightweight client-side React example
+- `examples/node-basic` - server-side event tracking example
+
 <p align="center">
   <img src="https://www.indiescapegames.com/gamiforge-logo.png" width="300" alt="Gamiforge Logo">
 </p>
@@ -65,10 +70,12 @@ npm install react react-dom
 
 ## Quick Start
 
+Fastest path: start with `examples/nextjs` if you want a working SaaS onboarding flow with visible rewards.
+
 ### React
 
 ```tsx
-// 1. Import styles once in your app entry point
+// 1. Install the SDK and import styles once
 import '@gamiforge/sdk/styles.css';
 
 // 2. Wrap your app with the provider
@@ -88,22 +95,33 @@ function App() {
   );
 }
 
-// 3. Track events from any component
+// 3. Track one real product action
 import { useTrackEvent } from '@gamiforge/sdk/react';
 
-function LessonButton() {
+function OnboardingButton() {
   const { trackEvent, isTracking } = useTrackEvent();
 
   return (
     <button
-      onClick={() => trackEvent('activity.completed', { lessonId: 'lesson_42' })}
+      onClick={() => trackEvent('profile.completed', { source: 'signup-checklist' })}
       disabled={isTracking}
     >
-      Complete Lesson
+      Complete profile
     </button>
   );
 }
 ```
+
+### Copy-paste flow
+
+1. Create an app in the hosted Gamiforge dashboard
+2. Install `@gamiforge/sdk`
+3. Add your runtime URL and API key
+4. Wrap your app with `GamiforgeProvider`
+5. Track one onboarding event like `profile.completed`
+6. See XP, achievements, or level progress show up in your UI
+
+Want a fuller version? See `examples/nextjs/README.md`.
 
 ### Node.js
 

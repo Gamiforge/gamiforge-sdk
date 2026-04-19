@@ -33,6 +33,27 @@ function mockUserStateResponse(overrides: Record<string, unknown> = {}) {
   };
 }
 
+function mockAppearanceResponse() {
+  return {
+    ok: true,
+    status: 200,
+    json: async () => ({
+      success: true,
+      data: {
+        toastPosition: 'top-right',
+        theme: { preset: 'default' },
+        achievementImages: {},
+      },
+    }),
+  };
+}
+
+function mockProviderFetches(userStateOverrides: Record<string, unknown> = {}) {
+  mockFetch
+    .mockResolvedValueOnce(mockUserStateResponse(userStateOverrides))
+    .mockResolvedValueOnce(mockAppearanceResponse());
+}
+
 // Test component that reads from context
 function TestConsumer() {
   const { xp, level, achievements, loading } = useUserState();
@@ -57,7 +78,7 @@ describe('GamiforgeProvider', () => {
   });
 
   it('fetches user state on mount and provides it to children', async () => {
-    mockFetch.mockResolvedValueOnce(mockUserStateResponse());
+    mockProviderFetches();
 
     render(
       <GamiforgeProvider config={testConfig} userId="user_123">
@@ -80,7 +101,7 @@ describe('GamiforgeProvider', () => {
   it('calculates XP progress correctly with default thresholds', async () => {
     // Level 2 requires 100 XP, Level 3 requires 300 XP
     // At 250 XP: progress = (250 - 100) / (300 - 100) = 150/200 = 0.75
-    mockFetch.mockResolvedValueOnce(mockUserStateResponse({ xp: 250, level: 2 }));
+    mockProviderFetches({ xp: 250, level: 2 });
 
     render(
       <GamiforgeProvider config={testConfig} userId="user_123">
@@ -107,7 +128,7 @@ describe('GamiforgeProvider', () => {
   });
 
   it('applies theme CSS variables', async () => {
-    mockFetch.mockResolvedValueOnce(mockUserStateResponse());
+    mockProviderFetches();
 
     const { container } = render(
       <GamiforgeProvider

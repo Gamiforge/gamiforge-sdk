@@ -1,6 +1,10 @@
 # @gamiforge/sdk
 
-The official SDK for [Gamiforge](https://www.gamiforge.com) — add XP, achievements, streaks, and leaderboards to your application in minutes.
+Add XP, achievements, streaks, leaderboards, and reward UI to your app in minutes.
+
+`@gamiforge/sdk` is the official Gamiforge SDK for adding progression systems to SaaS, learning, productivity, and community apps. Use the hosted Gamiforge platform by default, get your API key, and start tracking events right away.
+
+Built-in React components help you ship polished reward UI fast, and built-in guardrails help you avoid unhealthy engagement mechanics.
 
 <p align="center">
   <img src="https://www.indiescapegames.com/gamiforge-logo.png" width="300" alt="Gamiforge Logo">
@@ -26,16 +30,18 @@ The official SDK for [Gamiforge](https://www.gamiforge.com) — add XP, achievem
 
 ## Prerequisites
 
-To use this SDK you need a Gamiforge account and a provisioned Runtime. **[Sign up at www.gamiforge.com](https://www.gamiforge.com)** to get started.
+To get started, create a Gamiforge account and create an app in the hosted dashboard. Most developers should use the hosted version first. **[Sign up at www.gamiforge.com](https://www.gamiforge.com)** to get started.
 
 Gamiforge offers two hosting options:
 
 | Option | Description |
 |---|---|
-| **Hosted** | Gamiforge provisions and manages the Runtime for you. Your `runtimeBaseUrl` is provided in the dashboard after creating an app. |
-| **Self-Hosted** | You deploy and run the Runtime in your own infrastructure. Visit [www.gamiforge.com](https://www.gamiforge.com) to learn more and request a self-hosted license. |
+| **Hosted** | The default path for most developers. Gamiforge provisions and manages the Runtime for you, and your `runtimeBaseUrl` is provided in the dashboard after you create an app. |
+| **Self-Hosted** | Available for advanced and enterprise use cases when you need to deploy and run the Runtime in your own infrastructure. |
 
 Once your account is set up, create an application in the [dashboard](https://www.gamiforge.com) to get your `runtimeBaseUrl` and `apiKey`.
+
+Your goal for the quickstart is simple: install the SDK, track one event, and see a reward in your app.
 
 ---
 
